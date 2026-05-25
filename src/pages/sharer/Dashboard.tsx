@@ -196,7 +196,9 @@ export function LeaderboardPage() {
           return (
             <motion.div key={p.rank} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.15 }}
               style={{ flex: 1, textAlign: 'center', maxWidth: 160 }}>
-              <Avatar initials={p.initials} size={sizes[i]} color={colors[i]} style={{ margin: '0 auto 10px' }} />
+              <div style={{ margin: '0 auto 10px' }}>
+                <Avatar initials={p.initials} size={sizes[i]} color={colors[i]} />
+              </div>
               <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</div>
               <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 12 }}>{p.points.toLocaleString()} pts</div>
               <div style={{ height: heights[i], background: `linear-gradient(to top, ${colors[i]}, ${colors[i]}44)`, borderRadius: '12px 12px 0 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: 12 }}>
