@@ -84,9 +84,26 @@ interface AvatarProps {
   initials: string
   size?: number
   color?: string
+  imageUrl?: string | null
 }
 
-export function Avatar({ initials, size = 40, color = 'var(--primary)' }: AvatarProps) {
+export function Avatar({ initials, size = 40, color = 'var(--primary)', imageUrl }: AvatarProps) {
+  if (imageUrl) {
+    return (
+      <img
+        src={imageUrl}
+        style={{
+          width: size,
+          height: size,
+          borderRadius: '50%',
+          objectFit: 'cover',
+          flexShrink: 0,
+        }}
+        alt={initials}
+      />
+    )
+  }
+
   return (
     <div style={{
       width: size, height: size, borderRadius: '50%',
