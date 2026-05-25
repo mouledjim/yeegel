@@ -1,7 +1,20 @@
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { Upload, Check, X, LogOut, Lock, Globe, Bell, Eye, EyeSlash, Question, Mail, Phone } from 'react-bootstrap-icons'
+import {
+  CloudArrowUp,
+  CheckLg,
+  XLg,
+  BoxArrowRight,
+  LockFill,
+  Globe,
+  BellFill,
+  Eye,
+  EyeSlash,
+  QuestionCircleFill,
+  EnvelopeFill,
+  TelephoneFill,
+} from 'react-bootstrap-icons'
 import { Button } from '../../components/ui/Button'
 import { Avatar } from '../../components/ui'
 import { useAppStore } from '../../store/useAppStore'
