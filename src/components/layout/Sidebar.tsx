@@ -62,10 +62,10 @@ export function Sidebar() {
       {/* Logo */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32, paddingLeft: 8 }}>
         <div>
-          <div style={{ fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: 22, color: 'var(--primary)' }}>
+          <div style={{ fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: 'clamp(18px, 5vw, 22px)', color: 'var(--primary)' }}>
             Yéégël
           </div>
-          <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>La régie des quartiers</div>
+          <div style={{ fontSize: 'clamp(10px, 2vw, 11px)', color: 'var(--text-muted)', marginTop: 2 }}>La régie des quartiers</div>
         </div>
         {isMobile && (
           <button onClick={() => setSidebarOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: 4 }}>
@@ -82,10 +82,10 @@ export function Sidebar() {
       }}>
         <Avatar initials={user?.initials || 'U'} size={40} />
         <div style={{ minWidth: 0 }}>
-          <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <div style={{ fontWeight: 600, fontSize: 'clamp(13px, 2vw, 14px)', color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {user?.name}
           </div>
-          <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+          <div style={{ fontSize: 'clamp(11px, 2vw, 12px)', color: 'var(--text-muted)' }}>
             {user?.role === 'advertiser' ? 'Annonceur' : 'Partageur'}
             {user?.isVerified && <span style={{ color: 'var(--primary)', marginLeft: 4 }}>✓</span>}
           </div>
@@ -110,7 +110,7 @@ export function Sidebar() {
                 background: isActive ? 'var(--primary-light)' : item.highlight ? 'var(--gradient-primary)' : 'transparent',
                 color: isActive ? 'var(--primary-dark)' : item.highlight ? '#fff' : 'var(--text-secondary)',
                 fontWeight: isActive || item.highlight ? 600 : 500,
-                fontSize: 14,
+                fontSize: 'clamp(13px, 2vw, 14px)',
                 transition: 'all 0.15s ease',
                 boxShadow: item.highlight && !isActive ? 'var(--shadow-green)' : undefined,
               }}
@@ -127,10 +127,10 @@ export function Sidebar() {
         background: 'var(--gradient-primary)', borderRadius: 'var(--radius-md)',
         padding: '14px 16px', marginBottom: 16, color: '#fff',
       }}>
-        <div style={{ fontSize: 11, opacity: 0.8, marginBottom: 4 }}>
+        <div style={{ fontSize: 'clamp(10px, 2vw, 11px)', opacity: 0.8, marginBottom: 4 }}>
           {user?.role === 'advertiser' ? 'SOLDE DISPONIBLE' : 'GAINS ACCUMULÉS'}
         </div>
-        <div style={{ fontFamily: 'Space Grotesk', fontSize: 20, fontWeight: 700 }}>
+        <div style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(16px, 3vw, 20px)', fontWeight: 700 }}>
           {(user?.balance || 0).toLocaleString('fr-FR')} FCFA
         </div>
       </div>
@@ -143,7 +143,7 @@ export function Sidebar() {
           display: 'flex', alignItems: 'center', gap: 10,
           padding: '10px 14px', borderRadius: 'var(--radius-md)',
           border: 'none', cursor: 'pointer', background: '#FEE2E2',
-          color: '#DC2626', fontWeight: 600, fontSize: 14, width: '100%',
+          color: '#DC2626', fontWeight: 600, fontSize: 'clamp(13px, 2vw, 14px)', width: '100%',
         }}
       >
         <BoxArrowRight size={18} />
@@ -197,6 +197,31 @@ export function Sidebar() {
       </>
     )
   }
+
+  // Desktop sidebar
+  return (
+    <aside style={{
+      width: 'var(--sidebar-width)',
+      background: '#fff',
+      borderRight: '1px solid var(--border)',
+      position: 'fixed',
+      left: 0,
+      top: 0,
+      bottom: 0,
+      overflowY: 'auto',
+      display: 'none',
+    }}
+      className="desktop-sidebar"
+    >
+      <SidebarContent />
+      <style>{`
+        @media (min-width: 769px) {
+          .desktop-sidebar { display: block !important; }
+        }
+      `}</style>
+    </aside>
+  )
+}
 
   return (
     <motion.aside

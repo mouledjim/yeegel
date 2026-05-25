@@ -24,11 +24,11 @@ export function NotificationsPage() {
   const unread = notifications.filter((n) => n.unread).length
 
   return (
-    <div style={{ padding: '32px 24px', maxWidth: 700 }}>
+    <div style={{ padding: 'clamp(16px, 4vw, 32px)', maxWidth: 700 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 28 }}>
         <div>
-          <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 24, fontWeight: 700 }}>Notifications</h1>
-          {unread > 0 && <p style={{ color: 'var(--text-muted)', fontSize: 14, marginTop: 4 }}>{unread} non lue(s)</p>}
+          <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 700 }}>Notifications</h1>
+          {unread > 0 && <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(13px, 2vw, 14px)', marginTop: 4 }}>{unread} non lue(s)</p>}
         </div>
         {unread > 0 && <Button variant="secondary" size="sm" onClick={markAllRead}>Tout marquer lu</Button>}
       </div>
@@ -72,10 +72,10 @@ export function NotificationsPage() {
 export function ProfilePage() {
   const { user } = useAppStore()
   return (
-    <div style={{ padding: '32px 24px', maxWidth: 700 }}>
-      <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 24, fontWeight: 700, marginBottom: 28 }}>Mon Profil</h1>
+    <div style={{ padding: 'clamp(16px, 4vw, 32px)', maxWidth: 700 }}>
+      <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 700, marginBottom: 28 }}>Mon Profil</h1>
       <Card style={{ marginBottom: 24 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 24 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 24, flexWrap: 'wrap' }}>
           <div style={{ position: 'relative' }}>
             <Avatar initials={user?.initials || 'U'} size={80} />
             <div style={{ position: 'absolute', bottom: 0, right: 0, width: 24, height: 24, borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff', cursor: 'pointer' }}>
@@ -83,15 +83,15 @@ export function ProfilePage() {
             </div>
           </div>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-              <h2 style={{ fontFamily: 'Space Grotesk', fontSize: 22, fontWeight: 700 }}>{user?.name}</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
+              <h2 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 700 }}>{user?.name}</h2>
               {user?.isVerified && <Badge label="Vérifié" variant="success" />}
             </div>
-            <div style={{ fontSize: 14, color: 'var(--text-muted)', marginBottom: 4 }}>{user?.phone}</div>
-            <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>{user?.neighborhood}, {user?.city}</div>
+            <div style={{ fontSize: 'clamp(12px, 2vw, 14px)', color: 'var(--text-muted)', marginBottom: 4 }}>{user?.phone}</div>
+            <div style={{ fontSize: 'clamp(12px, 2vw, 13px)', color: 'var(--text-muted)' }}>{user?.neighborhood}, {user?.city}</div>
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, textAlign: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, textAlign: 'center' }} className="profile-stats">
           {[
             { label: 'Campagnes', value: user?.totalCampaigns || 0 },
             { label: 'Vues totales', value: user?.totalViews || 0 },
@@ -312,25 +312,25 @@ export function HelpPage() {
     { q: 'Comment retirer mes gains en tant que partageur ?', a: 'Dans ton tableau de bord, clique sur "Retirer sur Wave". Le minimum de retrait est de 500 FCFA. Le virement est instantané.' },
   ]
   return (
-    <div style={{ padding: '32px 24px', maxWidth: 700 }}>
-      <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 24, fontWeight: 700, marginBottom: 8 }}>Aide & Support</h1>
-      <p style={{ color: 'var(--text-muted)', marginBottom: 32 }}>Trouve des réponses à tes questions</p>
+    <div style={{ padding: 'clamp(16px, 4vw, 32px)', maxWidth: 700 }}>
+      <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 700, marginBottom: 8 }}>Aide & Support</h1>
+      <p style={{ color: 'var(--text-muted)', marginBottom: 32, fontSize: 'clamp(13px, 2vw, 14px)' }}>Trouve des réponses à tes questions</p>
       <Card style={{ marginBottom: 24 }}>
-        <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 16, fontWeight: 700, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(14px, 3vw, 16px)', fontWeight: 700, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
           <QuestionCircleFill size={18} color="var(--primary)" /> Questions fréquentes
         </h3>
         {faqs.map((faq, i) => (
           <div key={i} style={{ borderBottom: i < faqs.length - 1 ? '1px solid var(--border)' : undefined }}>
             <div onClick={() => setOpen(open === i ? null : i)}
               style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', cursor: 'pointer', gap: 12 }}>
-              <span style={{ fontWeight: 600, fontSize: 14 }}>{faq.q}</span>
+              <span style={{ fontWeight: 600, fontSize: 'clamp(13px, 2vw, 14px)' }}>{faq.q}</span>
               <motion.span animate={{ rotate: open === i ? 180 : 0 }} style={{ color: 'var(--primary)', fontSize: 20, flexShrink: 0 }}>⌄</motion.span>
             </div>
             <AnimatePresence>
               {open === i && (
                 <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
                   style={{ overflow: 'hidden' }}>
-                  <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.7, paddingBottom: 16 }}>{faq.a}</p>
+                  <p style={{ fontSize: 'clamp(12px, 2vw, 14px)', color: 'var(--text-muted)', lineHeight: 1.7, paddingBottom: 16 }}>{faq.a}</p>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -338,8 +338,8 @@ export function HelpPage() {
         ))}
       </Card>
       <Card>
-        <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 16, fontWeight: 700, marginBottom: 20 }}>Nous contacter</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12 }} className="contact-grid">
+        <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(14px, 3vw, 16px)', fontWeight: 700, marginBottom: 20 }}>Nous contacter</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }} className="contact-grid">
           {[
             { icon: <EnvelopeFill size={22} color="var(--primary)" />, label: 'Email', value: 'support@yeegel.sn', href: 'mailto:support@yeegel.sn', bg: 'var(--primary-light)' },
             { icon: <TelephoneFill size={22} color="#0891B2" />, label: 'Téléphone', value: '+221 77 000 00 00', href: 'tel:+221770000000', bg: '#CFFAFE' },
@@ -353,7 +353,7 @@ export function HelpPage() {
           ))}
         </div>
       </Card>
-      <style>{`@media(max-width:640px){.contact-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`@media(max-width:1024px){.profile-stats{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:640px){.profile-stats{grid-template-columns:1fr!important}.contact-grid{grid-template-columns:1fr!important}}`}</style>
     </div>
   )
 }

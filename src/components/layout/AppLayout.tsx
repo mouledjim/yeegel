@@ -19,8 +19,14 @@ export function AppLayout({ children }: AppLayoutProps) {
         {children}
       </main>
       <style>{`
+        @media (max-width: 1024px) {
+          .main-content-area { margin-left: 220px !important; }
+        }
         @media (max-width: 768px) {
-          .main-content-area { margin-left: 0 !important; padding-top: 64px; }
+          .main-content-area { margin-left: 0 !important; padding-top: 0 !important; }
+        }
+        @media (max-width: 480px) {
+          .main-content-area { margin-left: 0 !important; }
         }
       `}</style>
     </div>

@@ -27,11 +27,11 @@ export function CampaignsPage() {
   })
 
   return (
-    <div style={{ padding: '32px 24px', maxWidth: 1200 }}>
+    <div style={{ padding: 'clamp(16px, 4vw, 32px)', maxWidth: 1200 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 28, flexWrap: 'wrap', gap: 16 }}>
         <div>
-          <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 24, fontWeight: 700 }}>Mes Campagnes</h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: 14, marginTop: 4 }}>{campaigns.length} campagne(s) au total</p>
+          <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 700 }}>Mes Campagnes</h1>
+          <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(13px, 2vw, 14px)', marginTop: 4 }}>{campaigns.length} campagne(s) au total</p>
         </div>
         <Button leftIcon={<PlusCircleFill size={16} />} onClick={() => navigate('/dashboard/campaigns/new')}>
           Nouvelle campagne
@@ -45,7 +45,7 @@ export function CampaignsPage() {
           <input
             placeholder="Rechercher une campagne..."
             value={search} onChange={(e) => setSearch(e.target.value)}
-            style={{ width: '100%', padding: '10px 14px 10px 40px', border: '2px solid var(--border-default)', borderRadius: 'var(--radius-full)', fontSize: 14, outline: 'none', background: '#fff' }}
+            style={{ width: '100%', padding: '10px 14px 10px 40px', border: '2px solid var(--border-default)', borderRadius: 'var(--radius-full)', fontSize: 'clamp(13px, 2vw, 14px)', outline: 'none', background: '#fff' }}
             onFocus={(e) => { e.target.style.borderColor = 'var(--primary)' }}
             onBlur={(e) => { e.target.style.borderColor = 'var(--border-default)' }}
           />
@@ -53,7 +53,7 @@ export function CampaignsPage() {
         {['all', 'active', 'paused', 'completed'].map((f) => (
           <button key={f} onClick={() => setFilter(f)}
             style={{
-              padding: '8px 16px', borderRadius: 'var(--radius-full)', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600,
+              padding: '8px 16px', borderRadius: 'var(--radius-full)', border: 'none', cursor: 'pointer', fontSize: 'clamp(12px, 2vw, 13px)', fontWeight: 600,
               background: filter === f ? 'var(--primary)' : 'var(--bg-muted)',
               color: filter === f ? '#fff' : 'var(--text-muted)', transition: 'all 0.2s',
             }}
@@ -62,7 +62,11 @@ export function CampaignsPage() {
       </div>
 
       <motion.div variants={staggerContainer} initial="hidden" animate="visible"
-        style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }} className="campaigns-grid"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 'clamp(16px, 4vw, 20px)',
+        }} className="campaigns-grid"
       >
         {filtered.map((c, i) => (
           <motion.div key={c.id} variants={fadeInUp} whileHover={{ y: -4, boxShadow: 'var(--shadow-lg)' }}

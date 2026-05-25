@@ -24,7 +24,7 @@ export default function AdvertiserDashboard() {
   const active = campaigns.filter((c) => c.status === 'active')
 
   return (
-    <div style={{ padding: '32px 24px', maxWidth: 1200 }}>
+    <div style={{ padding: 'clamp(16px, 4vw, 32px)', maxWidth: 1200 }}>
       {/* Header */}
       <motion.div variants={staggerContainer} initial="hidden" animate="visible" style={{ marginBottom: 32 }}>
         <motion.div variants={fadeInUp} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
@@ -32,10 +32,10 @@ export default function AdvertiserDashboard() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <Avatar initials={user?.initials || 'U'} size={44} />
               <div>
-                <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 22, fontWeight: 700 }}>
+                <h1 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 700 }}>
                   Bonjour, {user?.name?.split(' ')[0]} 👋
                 </h1>
-                <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: 'clamp(12px, 2vw, 13px)', color: 'var(--text-muted)' }}>
                   {dayjs().format('dddd D MMMM YYYY')} · {user?.neighborhood}
                 </div>
               </div>
@@ -49,7 +49,12 @@ export default function AdvertiserDashboard() {
 
       {/* Stats */}
       <motion.div variants={staggerContainer} initial="hidden" animate="visible"
-        style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16, marginBottom: 32 }}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: 'clamp(12px, 3vw, 16px)',
+          marginBottom: 32,
+        }}
         className="stats-grid"
       >
         {[
@@ -77,7 +82,12 @@ export default function AdvertiserDashboard() {
         ))}
       </motion.div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24, marginBottom: 32 }} className="chart-grid">
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '2fr 1fr',
+        gap: 'clamp(16px, 4vw, 24px)',
+        marginBottom: 32,
+      }} className="chart-grid">
         {/* Chart */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <Card>

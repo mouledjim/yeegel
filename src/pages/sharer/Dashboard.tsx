@@ -69,7 +69,12 @@ export function SharerDashboardPage() {
 
       {/* Stats row */}
       <motion.div variants={staggerContainer} initial="hidden" animate="visible"
-        style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16, marginBottom: 28 }} className="sharer-stats"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: 'clamp(12px, 3vw, 16px)',
+          marginBottom: 28,
+        }} className="sharer-stats"
       >
         {[
           { icon: <Wallet2 size={20} />, value: user?.balance || 0, label: 'Gains totaux', suffix: ' FCFA', color: 'var(--gold)' },
@@ -92,7 +97,12 @@ export function SharerDashboardPage() {
       </motion.div>
 
       {/* Retrait + Classement */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 28 }} className="sharer-grid">
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: 'clamp(16px, 4vw, 24px)',
+        marginBottom: 28,
+      }} className="sharer-grid">
         <Card>
           <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 16, fontWeight: 700, marginBottom: 20 }}>Retirer mes gains</h3>
           <div style={{ textAlign: 'center', padding: '20px 0 28px' }}>
@@ -273,7 +283,7 @@ export function AvailableAdsPage() {
           </motion.div>
         ))}
       </div>
-      <style>{`@media(max-width:1024px){.avail-grid{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:640px){.avail-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`@media(max-width:1024px){.sharer-stats{grid-template-columns:repeat(2,1fr)!important}.avail-grid{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:768px){.sharer-stats{grid-template-columns:repeat(2,1fr)!important}.sharer-grid{grid-template-columns:1fr!important}.avail-grid{grid-template-columns:1fr!important}}`}</style>
     </div>
   )
 }

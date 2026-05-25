@@ -38,13 +38,13 @@ function Navbar() {
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
       background: 'rgba(247,253,249,0.92)', backdropFilter: 'blur(12px)',
       borderBottom: '1px solid var(--border)',
-      padding: '0 24px', height: 64,
+      padding: '0 16px', height: 64,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
     }}>
-      <div style={{ fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: 22, color: 'var(--primary)' }}>
+      <div style={{ fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: 'clamp(18px, 5vw, 22px)', color: 'var(--primary)' }}>
         Yéégël
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <Button variant="ghost" size="sm" onClick={() => navigate('/login')}>
           Se connecter
         </Button>
@@ -82,8 +82,15 @@ export default function LandingPage() {
           }} />
         ))}
 
-        <div className="container" style={{ padding: '80px 24px', maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
+        <div className="container" style={{ padding: 'clamp(40px, 10vw, 80px) clamp(16px, 5vw, 24px)', maxWidth: 1200, margin: '0 auto', width: '100%' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: 'clamp(30px, 8vw, 60px)',
+            alignItems: 'center',
+          }}
+            className="hero-grid"
+          >
             {/* Texte hero */}
             <motion.div
               variants={staggerContainer}
@@ -94,14 +101,14 @@ export default function LandingPage() {
                   display: 'inline-flex', alignItems: 'center', gap: 8,
                   background: 'var(--primary-light)', color: 'var(--primary-dark)',
                   padding: '6px 14px', borderRadius: 'var(--radius-full)',
-                  fontSize: 13, fontWeight: 600, marginBottom: 24,
+                  fontSize: 'clamp(11px, 2vw, 13px)', fontWeight: 600, marginBottom: 24,
                 }}>
                   <span>🇸🇳</span> Fait pour le Sénégal
                 </span>
               </motion.div>
 
               <motion.h1 variants={fadeInUp} style={{
-                fontFamily: 'Space Grotesk', fontSize: 'clamp(36px, 5vw, 64px)',
+                fontFamily: 'Space Grotesk', fontSize: 'clamp(28px, 6vw, 64px)',
                 fontWeight: 700, lineHeight: 1.1, marginBottom: 24, color: 'var(--text-primary)',
               }}>
                 La régie pub{' '}
@@ -114,14 +121,21 @@ export default function LandingPage() {
               </motion.h1>
 
               <motion.p variants={fadeInUp} style={{
-                fontSize: 18, color: 'var(--text-secondary)', marginBottom: 36,
+                fontSize: 'clamp(14px, 3vw, 18px)', color: 'var(--text-secondary)', marginBottom: 36,
                 lineHeight: 1.7, maxWidth: 480,
               }}>
                 Lance ta pub locale dès <strong style={{ color: 'var(--primary)' }}>500 FCFA</strong>.
                 Touche tes voisins, pas le monde entier.
               </motion.p>
 
-              <motion.div variants={fadeInUp} style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <motion.div variants={fadeInUp} style={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 12,
+                flexWrap: 'wrap',
+              }}
+                className="hero-buttons"
+              >
                 <Button size="lg" onClick={() => navigate('/register')} rightIcon={<ArrowRight size={18} />}>
                   Créer ma première pub
                 </Button>
@@ -137,6 +151,7 @@ export default function LandingPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               style={{ display: 'flex', justifyContent: 'center' }}
+              className="hero-illustration"
             >
               <HeroIllustration />
             </motion.div>
@@ -149,10 +164,16 @@ export default function LandingPage() {
             animate={statsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.6 }}
             style={{
-              display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24,
-              marginTop: 80, padding: '32px', background: '#fff',
-              borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 'clamp(12px, 3vw, 24px)',
+              marginTop: 'clamp(40px, 10vw, 80px)',
+              padding: 'clamp(20px, 5vw, 32px)',
+              background: '#fff',
+              borderRadius: 'var(--radius-xl)',
+              boxShadow: 'var(--shadow-lg)',
             }}
+            className="stats-grid"
           >
             {[
               { value: 2400, suffix: '+', label: 'Commerçants actifs' },
@@ -160,34 +181,54 @@ export default function LandingPage() {
               { value: 380, suffix: '+', label: 'Quartiers couverts' },
             ].map((stat) => (
               <div key={stat.label} style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, color: 'var(--primary)' }}>
+                <div style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(24px, 5vw, 44px)', fontWeight: 700, color: 'var(--primary)' }}>
                   {statsInView && <AnimatedCounter end={stat.value} suffix={stat.suffix} separator=" " />}
                 </div>
-                <div style={{ fontSize: 14, color: 'var(--text-muted)', marginTop: 4 }}>{stat.label}</div>
+                <div style={{ fontSize: 'clamp(12px, 2vw, 14px)', color: 'var(--text-muted)', marginTop: 4 }}>{stat.label}</div>
               </div>
             ))}
           </motion.div>
         </div>
+
+        <style>{`
+          @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr !important; }
+            .hero-illustration { display: none !important; }
+            .hero-buttons { flex-direction: column !important; }
+            .hero-buttons > * { width: 100% !important; }
+          }
+          @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
       </section>
 
       {/* Comment ça marche */}
-      <section style={{ padding: '100px 24px', background: 'var(--bg-muted)' }}>
+      <section style={{
+        padding: 'clamp(40px, 10vw, 100px) clamp(16px, 5vw, 24px)',
+        background: 'var(--bg-muted)',
+      }}>
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
           <motion.div
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            style={{ textAlign: 'center', marginBottom: 64 }}
+            style={{ textAlign: 'center', marginBottom: 'clamp(40px, 8vw, 64px)' }}
           >
-            <motion.h2 variants={fadeInUp} style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, marginBottom: 16 }}>
+            <motion.h2 variants={fadeInUp} style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(24px, 5vw, 44px)', fontWeight: 700, marginBottom: 16 }}>
               Comment ça marche ?
             </motion.h2>
-            <motion.p variants={fadeInUp} style={{ fontSize: 18, color: 'var(--text-muted)', maxWidth: 500, margin: '0 auto' }}>
+            <motion.p variants={fadeInUp} style={{ fontSize: 'clamp(14px, 3vw, 18px)', color: 'var(--text-muted)', maxWidth: 500, margin: '0 auto' }}>
               En 3 étapes simples, ta pub touche tout ton quartier
             </motion.p>
           </motion.div>
 
           <motion.div
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 'clamp(20px, 5vw, 32px)',
+            }}
+            className="steps-grid"
           >
             {[
               { num: '01', icon: <RocketFill size={32} />, title: 'Crée ta pub', desc: 'Décris ton business, ajoute une photo et choisis ton quartier. Prêt en 2 minutes.' },
@@ -196,7 +237,7 @@ export default function LandingPage() {
             ].map((step, i) => (
               <motion.div key={i} variants={scaleIn}>
                 <div style={{
-                  background: '#fff', borderRadius: 'var(--radius-xl)', padding: 32,
+                  background: '#fff', borderRadius: 'var(--radius-xl)', padding: 'clamp(20px, 5vw, 32px)',
                   boxShadow: 'var(--shadow-md)', textAlign: 'center', position: 'relative',
                   border: '1px solid var(--border)',
                 }}>
@@ -212,34 +253,47 @@ export default function LandingPage() {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     margin: '16px auto 20px',
                   }}>{step.icon}</div>
-                  <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 20, fontWeight: 700, marginBottom: 12 }}>{step.title}</h3>
-                  <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.7 }}>{step.desc}</p>
+                  <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(16px, 3vw, 20px)', fontWeight: 700, marginBottom: 12 }}>{step.title}</h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(13px, 2vw, 14px)', lineHeight: 1.7 }}>{step.desc}</p>
                 </div>
               </motion.div>
             ))}
           </motion.div>
+
+          <style>{`
+            @media (max-width: 768px) {
+              .steps-grid { grid-template-columns: 1fr !important; }
+            }
+          `}</style>
         </div>
       </section>
 
       {/* Features */}
-      <section style={{ padding: '100px 24px' }}>
+      <section style={{
+        padding: 'clamp(40px, 10vw, 100px) clamp(16px, 5vw, 24px)',
+      }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 64 }}
+            viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 'clamp(40px, 8vw, 64px)' }}
           >
-            <h2 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, marginBottom: 16 }}>
+            <h2 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(24px, 5vw, 44px)', fontWeight: 700, marginBottom: 16 }}>
               Tout ce dont tu as besoin
             </h2>
           </motion.div>
           <motion.div
             variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 'clamp(16px, 4vw, 24px)',
+            }}
+            className="features-grid"
           >
             {features.map((f, i) => (
               <motion.div key={i} variants={fadeInUp} whileHover={{ y: -6, boxShadow: 'var(--shadow-lg)' }}>
                 <div style={{
-                  background: '#fff', borderRadius: 'var(--radius-lg)', padding: 28,
+                  background: '#fff', borderRadius: 'var(--radius-lg)', padding: 'clamp(20px, 5vw, 28px)',
                   boxShadow: 'var(--shadow-md)', border: '1px solid var(--border)',
                   transition: 'all 0.25s ease', height: '100%',
                 }}>
@@ -249,35 +303,54 @@ export default function LandingPage() {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     marginBottom: 16,
                   }}>{f.icon}</div>
-                  <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 17, fontWeight: 700, marginBottom: 8 }}>{f.title}</h3>
-                  <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.7 }}>{f.desc}</p>
+                  <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(15px, 3vw, 17px)', fontWeight: 700, marginBottom: 8 }}>{f.title}</h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(13px, 2vw, 14px)', lineHeight: 1.7 }}>{f.desc}</p>
                 </div>
               </motion.div>
             ))}
           </motion.div>
+
+          <style>{`
+            @media (max-width: 1024px) {
+              .features-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            }
+            @media (max-width: 768px) {
+              .features-grid { grid-template-columns: 1fr !important; }
+            }
+          `}</style>
         </div>
       </section>
 
       {/* Tarifs */}
-      <section style={{ padding: '100px 24px', background: 'var(--bg-muted)' }}>
+      <section style={{
+        padding: 'clamp(40px, 10vw, 100px) clamp(16px, 5vw, 24px)',
+        background: 'var(--bg-muted)',
+      }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 56 }}
+            viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 'clamp(40px, 8vw, 56px)' }}
           >
-            <h2 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, marginBottom: 16 }}>
+            <h2 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(24px, 5vw, 44px)', fontWeight: 700, marginBottom: 16 }}>
               Des tarifs accessibles
             </h2>
-            <p style={{ fontSize: 17, color: 'var(--text-muted)' }}>Commence avec 500 FCFA. Augmente quand tu veux.</p>
+            <p style={{ fontSize: 'clamp(14px, 3vw, 17px)', color: 'var(--text-muted)' }}>Commence avec 500 FCFA. Augmente quand tu veux.</p>
           </motion.div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, alignItems: 'stretch' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 'clamp(16px, 4vw, 24px)',
+            alignItems: 'stretch',
+          }}
+            className="pricing-grid"
+          >
             {plans.map((plan, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 style={{
-                  background: '#fff', borderRadius: 'var(--radius-xl)', padding: 32,
+                  background: '#fff', borderRadius: 'var(--radius-xl)', padding: 'clamp(20px, 5vw, 32px)',
                   border: plan.highlight ? `2px solid ${plan.color}` : '1px solid var(--border)',
                   boxShadow: plan.highlight ? 'var(--shadow-green)' : 'var(--shadow-md)',
                   position: 'relative', display: 'flex', flexDirection: 'column',
@@ -290,18 +363,18 @@ export default function LandingPage() {
                     padding: '4px 16px', borderRadius: 'var(--radius-full)',
                   }}>Le plus populaire</div>
                 )}
-                <div style={{ fontFamily: 'Space Grotesk', fontSize: 22, fontWeight: 700, marginBottom: 8, color: plan.color }}>
+                <div style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 700, marginBottom: 8, color: plan.color }}>
                   {plan.name}
                 </div>
                 <div style={{ marginBottom: 24 }}>
-                  <span style={{ fontFamily: 'Space Grotesk', fontSize: 36, fontWeight: 700 }}>{plan.price}</span>
-                  <span style={{ fontSize: 14, color: 'var(--text-muted)' }}> FCFA/{plan.period}</span>
+                  <span style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(28px, 6vw, 36px)', fontWeight: 700 }}>{plan.price}</span>
+                  <span style={{ fontSize: 'clamp(12px, 2vw, 14px)', color: 'var(--text-muted)' }}> FCFA/{plan.period}</span>
                 </div>
                 <div style={{ flex: 1 }}>
                   {[`~${plan.reach} vues estimées`, plan.neighborhoods, 'Stats en temps réel', 'Paiement Mobile Money'].map((f) => (
                     <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
                       <CheckCircleFill size={16} color="var(--primary)" />
-                      <span style={{ fontSize: 14, color: 'var(--text-secondary)' }}>{f}</span>
+                      <span style={{ fontSize: 'clamp(13px, 2vw, 14px)', color: 'var(--text-secondary)' }}>{f}</span>
                     </div>
                   ))}
                 </div>
@@ -315,32 +388,49 @@ export default function LandingPage() {
               </motion.div>
             ))}
           </div>
+
+          <style>{`
+            @media (max-width: 1024px) {
+              .pricing-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            }
+            @media (max-width: 768px) {
+              .pricing-grid { grid-template-columns: 1fr !important; }
+            }
+          `}</style>
         </div>
       </section>
 
       {/* Témoignages */}
-      <section style={{ padding: '100px 24px' }}>
+      <section style={{
+        padding: 'clamp(40px, 10vw, 100px) clamp(16px, 5vw, 24px)',
+      }}>
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
           <motion.h2
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, textAlign: 'center', marginBottom: 56 }}
+            style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(24px, 5vw, 44px)', fontWeight: 700, textAlign: 'center', marginBottom: 'clamp(40px, 8vw, 56px)' }}
           >
             Ils nous font confiance
           </motion.h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 'clamp(16px, 4vw, 24px)',
+          }}
+            className="testimonials-grid"
+          >
             {testimonials.map((t, i) => (
               <motion.div
                 key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 style={{
-                  background: '#fff', borderRadius: 'var(--radius-lg)', padding: 28,
+                  background: '#fff', borderRadius: 'var(--radius-lg)', padding: 'clamp(20px, 5vw, 28px)',
                   boxShadow: 'var(--shadow-md)', border: '1px solid var(--border)',
                 }}
               >
                 <div style={{ display: 'flex', gap: 2, marginBottom: 16 }}>
                   {Array(t.rating).fill(0).map((_, j) => <StarFill key={j} size={14} color="#F59E0B" />)}
                 </div>
-                <p style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 20 }}>
+                <p style={{ fontSize: 'clamp(13px, 2vw, 14px)', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 20 }}>
                   "{t.text}"
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -351,19 +441,28 @@ export default function LandingPage() {
                     fontSize: 13, fontWeight: 700,
                   }}>{t.name.charAt(0)}</div>
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: 14 }}>{t.name}</div>
-                    <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{t.neighborhood}</div>
+                    <div style={{ fontWeight: 600, fontSize: 'clamp(13px, 2vw, 14px)' }}>{t.name}</div>
+                    <div style={{ fontSize: 'clamp(11px, 2vw, 12px)', color: 'var(--text-muted)' }}>{t.neighborhood}</div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          <style>{`
+            @media (max-width: 1024px) {
+              .testimonials-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            }
+            @media (max-width: 768px) {
+              .testimonials-grid { grid-template-columns: 1fr !important; }
+            }
+          `}</style>
         </div>
       </section>
 
       {/* CTA finale */}
       <section style={{
-        padding: '100px 24px',
+        padding: 'clamp(40px, 10vw, 100px) clamp(16px, 5vw, 24px)',
         background: 'var(--gradient-cta)',
         textAlign: 'center',
       }}>
@@ -371,10 +470,10 @@ export default function LandingPage() {
           initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }} transition={{ duration: 0.5 }}
         >
-          <h2 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(28px,4vw,48px)', fontWeight: 700, color: '#fff', marginBottom: 20 }}>
+          <h2 style={{ fontFamily: 'Space Grotesk', fontSize: 'clamp(24px, 6vw, 48px)', fontWeight: 700, color: '#fff', marginBottom: 20 }}>
             Prêt à toucher ton quartier ?
           </h2>
-          <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.8)', marginBottom: 40 }}>
+          <p style={{ fontSize: 'clamp(14px, 3vw, 18px)', color: 'rgba(255,255,255,0.8)', marginBottom: 40, maxWidth: 500, margin: '0 auto 40px' }}>
             Rejoins 2 400+ commerçants qui font confiance à Yéégël
           </p>
           <Button
@@ -388,13 +487,26 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer style={{ padding: '48px 24px', background: '#0F2318', color: 'rgba(255,255,255,0.7)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
+      <footer style={{
+        padding: 'clamp(30px, 8vw, 48px) clamp(16px, 5vw, 24px)',
+        background: '#0F2318',
+        color: 'rgba(255,255,255,0.7)',
+      }}>
+        <div style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: 'auto 1fr auto',
+          gap: 'clamp(16px, 5vw, 24px)',
+          alignItems: 'center',
+        }}
+          className="footer-grid"
+        >
           <div>
-            <div style={{ fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: 20, color: 'var(--primary)', marginBottom: 6 }}>Yéégël</div>
-            <div style={{ fontSize: 13 }}>La régie des quartiers — Dakar, Sénégal</div>
+            <div style={{ fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: 'clamp(16px, 3vw, 20px)', color: 'var(--primary)', marginBottom: 6 }}>Yéégël</div>
+            <div style={{ fontSize: 'clamp(12px, 2vw, 13px)' }}>La régie des quartiers — Dakar, Sénégal</div>
           </div>
-          <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', fontSize: 14 }}>
+          <div style={{ display: 'flex', gap: 'clamp(12px, 3vw, 24px)', flexWrap: 'wrap', fontSize: 'clamp(13px, 2vw, 14px)', justifyContent: 'center' }}>
             {['À propos', 'Contact', 'Conditions', 'Confidentialité'].map((link) => (
               <a key={link} href="#" style={{ color: 'rgba(255,255,255,0.6)', transition: 'color 0.2s' }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
@@ -408,21 +520,16 @@ export default function LandingPage() {
             </a>
           </div>
         </div>
-        <div style={{ textAlign: 'center', marginTop: 32, fontSize: 13, color: 'rgba(255,255,255,0.4)', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 24 }}>
+        <div style={{ textAlign: 'center', marginTop: 'clamp(20px, 5vw, 32px)', fontSize: 'clamp(11px, 2vw, 13px)', color: 'rgba(255,255,255,0.4)', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 'clamp(15px, 3vw, 24px)' }}>
           © 2025 Yéégël. Fait avec amour au Sénégal.
         </div>
-      </footer>
 
-      <style>{`
-        @media (max-width: 768px) {
-          section > div > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
-          section > div > div[style*="repeat(3, 1fr)"] { grid-template-columns: 1fr !important; }
-          section > div > div[style*="repeat(3, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 480px) {
-          section > div > div[style*="repeat(2, 1fr)"] { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
+        <style>{`
+          @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr !important; text-align: center !important; }
+          }
+        `}</style>
+      </footer>
     </div>
   )
 }
@@ -432,7 +539,7 @@ function HeroIllustration() {
     <motion.div
       animate={{ y: [0, -12, 0] }}
       transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-      style={{ position: 'relative', width: 340, height: 380 }}
+      style={{ position: 'relative', width: 'clamp(240px, 80vw, 340px)', height: 'clamp(280px, 100vw, 380px)' }}
     >
       {/* Phone */}
       <div style={{
