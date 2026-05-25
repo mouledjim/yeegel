@@ -1,0 +1,54 @@
+:root {
+  --bg-root: #F7FDF9;
+  --bg-surface: #FFFFFF;
+  --bg-muted: #EEF8F2;
+  --bg-accent: #E3F5EB;
+
+  --primary: #16A34A;
+  --primary-dark: #166534;
+  --primary-light: #DCFCE7;
+  --primary-glow: rgba(22, 163, 74, 0.18);
+
+  --gold: #D97706;
+  --gold-light: #FEF3C7;
+  --gold-dark: #B45309;
+
+  --success: #16A34A;
+  --warning: #D97706;
+  --error: #DC2626;
+  --info: #0891B2;
+
+  --text-primary: #0F2318;
+  --text-secondary: #374151;
+  --text-muted: #6B7280;
+  --text-light: #9CA3AF;
+
+  --border: #D1FAE5;
+  --border-strong: #A7F3D0;
+  --border-default: #E5E7EB;
+
+  --wave: #0D9488;
+  --orange-mo: #EA580C;
+  --free: #7C3AED;
+
+  --gradient-hero: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 60%, #F0FFF4 100%);
+  --gradient-primary: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+  --gradient-gold: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  --gradient-cta: linear-gradient(135deg, #16A34A 0%, #0D9488 100%);
+  --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #F0FDF4 100%);
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.04);
+  --shadow-green: 0 8px 32px rgba(22,163,74,0.25), 0 2px 8px rgba(22,163,74,0.12);
+  --shadow-gold: 0 8px 32px rgba(217,119,6,0.20);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  --sidebar-width: 260px;
+  --navbar-height: 64px;
+}
