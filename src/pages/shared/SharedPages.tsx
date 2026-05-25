@@ -109,7 +109,7 @@ export function ProfilePage() {
                 justifyContent: 'center',
                 opacity: uploading ? 0.6 : 1,
               }}>
-              {uploading ? <span style={{ fontSize: 16 }}>⏳</span> : <Upload size={16} />}
+              {uploading ? <span style={{ fontSize: 16 }}>⏳</span> : <CloudArrowUp size={16} />}
             </button>
           </div>
           <input
@@ -329,7 +329,7 @@ export function SettingsPage() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <Bell size={20} color="var(--primary)" />
+              <BellFill size={20} color="var(--primary)" />
               <div>
                 <div style={{ fontWeight: 600, fontSize: 'clamp(14px, 2vw, 15px)', color: 'var(--text-primary)' }}>Notifications push</div>
               </div>
@@ -360,7 +360,7 @@ export function SettingsPage() {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <Mail size={20} color="var(--primary)" />
+              <EnvelopeFill size={20} color="var(--primary)" />
               <div>
                 <div style={{ fontWeight: 600, fontSize: 'clamp(14px, 2vw, 15px)', color: 'var(--text-primary)' }}>Emails</div>
               </div>
@@ -400,7 +400,7 @@ export function SettingsPage() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <Lock size={20} color="var(--primary)" />
+              <LockFill size={20} color="var(--primary)" />
               <div>
                 <div style={{ fontWeight: 600, fontSize: 'clamp(14px, 2vw, 15px)', color: 'var(--text-primary)' }}>Profil privé</div>
                 <div style={{ fontSize: 'clamp(12px, 2vw, 13px)', color: 'var(--text-muted)', marginTop: 2 }}>Masquer vos stats publiquement</div>
@@ -434,7 +434,7 @@ export function SettingsPage() {
 
         {/* Logout */}
         <motion.div variants={fadeInUp}>
-          <Button fullWidth variant="danger" onClick={handleLogout} leftIcon={<LogOut size={16} />}>
+          <Button fullWidth variant="danger" onClick={handleLogout} leftIcon={<BoxArrowRight size={16} />}>
             Déconnexion
           </Button>
         </motion.div>
@@ -546,14 +546,14 @@ export function HelpPage() {
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <a href="mailto:support@yeegel.com" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px', background: 'var(--bg-muted)', borderRadius: 'var(--radius-md)', textDecoration: 'none', color: 'var(--text-primary)' }}>
-              <Mail size={20} color="var(--primary)" />
+              <EnvelopeFill size={20} color="var(--primary)" />
               <div>
                 <div style={{ fontWeight: 600, fontSize: 'clamp(13px, 2vw, 14px)' }}>Email</div>
                 <div style={{ fontSize: 'clamp(12px, 2vw, 13px)', color: 'var(--text-muted)' }}>support@yeegel.com</div>
               </div>
             </a>
             <a href="tel:+221771234567" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px', background: 'var(--bg-muted)', borderRadius: 'var(--radius-md)', textDecoration: 'none', color: 'var(--text-primary)' }}>
-              <Phone size={20} color="var(--primary)" />
+              <TelephoneFill size={20} color="var(--primary)" />
               <div>
                 <div style={{ fontWeight: 600, fontSize: 'clamp(13px, 2vw, 14px)' }}>WhatsApp</div>
                 <div style={{ fontSize: 'clamp(12px, 2vw, 13px)', color: 'var(--text-muted)' }}>+221 77 123 45 67</div>
@@ -713,10 +713,10 @@ export function NotificationsPage() {
   const unread = notifications.filter(n => n.unread).length
 
   const notifIcon: Record<string, JSX.Element> = {
-    success: <Check size={18} color="var(--primary)" />,
-    info: <Bell size={18} color="#0891B2" />,
+    success: <CheckLg size={18} color="var(--primary)" />,
+    info: <BellFill size={18} color="#0891B2" />,
     warning: <span style={{ fontSize: 14 }}>⚠️</span>,
-    error: <X size={18} color="var(--error)" />,
+    error: <XLg size={18} color="var(--error)" />,
   }
 
   return (
@@ -740,7 +740,7 @@ export function NotificationsPage() {
             padding: '80px 24px',
             color: 'var(--text-muted)',
           }}>
-            <Bell size={48} style={{ marginBottom: 16, opacity: 0.4 }} />
+            <BellFill size={48} style={{ marginBottom: 16, opacity: 0.4 }} />
             <div style={{ fontFamily: 'Space Grotesk', fontSize: 18, fontWeight: 700, marginBottom: 8 }}>
               Aucune notification
             </div>
@@ -770,7 +770,7 @@ export function NotificationsPage() {
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontWeight: 600, fontSize: 'clamp(13px, 2vw, 14px)', color: 'var(--text-primary)', marginBottom: 2 }}>
-                      {notif.message}
+                    {notif.type === 'success' ? '✅ Succès' : notif.type === 'error' ? '❌ Erreur' : 'ℹ️ Info'}
                     </div>
                     <div style={{ fontSize: 'clamp(12px, 2vw, 13px)', color: 'var(--text-muted)' }}>
                       {new Date(parseInt(notif.id)).toLocaleDateString('fr-FR')}

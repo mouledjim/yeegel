@@ -22,7 +22,7 @@ function getPrediction(budget: number, duration: number) {
 
 export function CreateCampaignPage() {
   const navigate = useNavigate()
-  const addCampaign = useAppStore((s) => s.addCampaign)
+  const { addCampaign, user } = useAppStore()
   const [step, setStep] = useState(0)
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -53,15 +53,38 @@ export function CreateCampaignPage() {
     setLoading(true)
     await new Promise((r) => setTimeout(r, 2000))
     addCampaign({
-      id: Date.now().toString(), title: form.title, description: form.description,
-      category: form.category, status: 'active', budget, spent: 0,
-      views: 0, clicks: 0, calls: 0, shares: 0,
-      neighborhood: form.neighborhoods[0] || 'Dakar', city: form.city,
-      language: form.language, startDate: new Date().toISOString().slice(0, 10),
+      id: Date.now().toString(),
+      advertiserId: user?.id || '',
+      title: form.title,
+      description: form.description,
+      category: form.category,
+      status: 'active',
+      budget,
+      spent: 0,
+      views: 0,
+      clicks: 0,
+      calls: 0,
+      shares: 0,
+      neighborhood: form.neighborhoods[0] || 'Dakar',
+      neighborhoods: form.neighborhoods,
+      city: form.city,
+      language: form.language,
+      startDate: new Date().toISOString().slice(0, 10),
       endDate: new Date(Date.now() + form.duration * 7 * 86400000).toISOString().slice(0, 10),
-      callNumber: form.callNumber, color: '#16A34A', colorLight: '#DCFCE7',
-      trending: false, aiGenerated: false, predictedReach: pred.views, commission: 25,
-      weeklyData: [0, 0, 0, 0, 0, 0, 0],
+      createdAt: new Date().toISOString(),
+      phoneNumber: form.callNumber,
+      color: '#16A34A',
+      aiGenerated: false,
+      commission: 25,
+      weeklyData: [
+        { day: 'Mon', views: 0, clicks: 0, calls: 0 },
+        { day: 'Tue', views: 0, clicks: 0, calls: 0 },
+        { day: 'Wed', views: 0, clicks: 0, calls: 0 },
+        { day: 'Thu', views: 0, clicks: 0, calls: 0 },
+        { day: 'Fri', views: 0, clicks: 0, calls: 0 },
+        { day: 'Sat', views: 0, clicks: 0, calls: 0 },
+        { day: 'Sun', views: 0, clicks: 0, calls: 0 },
+      ],
     })
     setLoading(false)
     setSuccess(true)

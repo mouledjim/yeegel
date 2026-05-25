@@ -56,16 +56,19 @@ export interface Campaign {
   createdAt: string
   weeklyData?: { day: string; views: number; clicks: number; calls: number }[]
   sub?: string
+  aiGenerated?: boolean
+  commission?: number
 }
 
 export interface Notification {
   id: string
-  title: string
-  body: string
+  title?: string
+  body?: string
+  message?: string
   type: 'success' | 'info' | 'warning' | 'error'
-  time: string
+  time?: string
   unread: boolean
-  userId: string
+  userId?: string
 }
 
 export interface Review {
